@@ -2,125 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TODO list</title>
+    <title>Todo List</title>
 
     <link rel="stylesheet" href="fonts/all.min.css">
+    <link rel="stylesheet" href="app.css">
 
-    <style>
+    <script src="app.js" type="module"></script>
+    <script src="app.web.js" type="module"></script>
 
-        body {
-            font-family: Arial,serif;
-            margin:0;
-            padding:0;
-        }
-
-        .app {
-            padding: 0 20%;
-        }
-
-        header {
-            background-color: #4195EB;
-            color: white;
-            padding: 1em 50px;
-            display: flex;
-            font-weight: normal;
-            align-content: center;
-            margin-bottom: 2em;
-        }
-
-        header h1 {
-            font-weight: normal;
-            padding: 0;
-            margin: 0;
-        }
-
-        header input {
-            border: none;
-            border-bottom: 1px solid white;
-            background-color: #4195EB;
-            color: white;
-        }
-
-        header input::placeholder {
-            color: white;
-        }
-
-        header .search-tasks {
-            margin-left: auto;
-        }
-
-        select, input {
-            border: none;
-            border-bottom: 1px solid lightgray;
-            padding-bottom: 4px;
-        }
-
-        .new-task {
-            margin: 1em;
-            text-align: center;
-        }
-
-        .new-task input {
-            width: 80%;
-        }
-
-        .new-task button {
-            text-transform: uppercase;
-            background-color: white;
-            padding: 4px;
-            margin-left: 2em;
-            width: 50px;
-        }
-
-        .task-box {
-            border-radius: 10px;
-            border: 1px solid lightgray;
-            box-shadow: 3px 3px 9px 0px lightgray;
-            margin: 1em 0;
-            padding: 1em;
-            display: flex;
-        }
-
-        .task-box input {
-            margin-right: 1em;
-        }
-
-
-        .clear-task-list {
-            text-align: right;
-            padding: 1em 0;
-        }
-
-        .task-list-header {
-            display: flex;
-            margin: 2em 0 1em 0;
-        }
-
-        .task-list-header select {
-            width: 30%;
-            margin-left: auto;
-        }
-
-        .time {
-            text-transform: uppercase;
-            font-weight: bold;
-            color: gray;
-            font-size: small;
-            margin-left: auto;
-        }
-
-        .complete-time {
-            margin-top: 0.5em;
-            color: black;
-        }
-
-        .thrash {
-            color: lightgray;
-            border-left: 2px solid lightgray;
-            margin-left: 0.5em;
-            padding-left: 0.5em;
-        }
-    </style>
 </head>
 <body>
 
@@ -133,79 +22,115 @@
 
                 <span class="search-tasks">
                     <input id="searchTasks" placeholder="Search...">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-search" id="btnSearchTasks"></i>
                 </span>
 
             </header>
 
-
             <div class="new-task">
                 <input id="newTask" placeholder="New task...">
-                <button type="submit" class="pure-button">Add</button>
+                <button id="btnAddTask">Add</button>
             </div>
 
-
-            <div class="task-list-header">
-                <span class="taskListName">Open</span>
-                <select id="openListSort">
-                    <option>Date creation (asc)</option>
-                </select>
+            <div class="search-result none">
+                <span></span>
+                <a class="button">Clear filter</a>
             </div>
 
+            <div id="taskListOpen">
 
-
-            <div class="task-box">
-                <input type="checkbox" id="task1"> Make a homework
-                <span class="time">07:53 PM</span>
-            </div>
-
-            <div class="task-box">
-                <input type="checkbox" id="task2"> Make a homework
-                <span class="time">07:53 PM</span>
-                <div class="thrash">
-                    <i class="fas fa-trash"></i>
+                <div class="task-list-header">
+                    <span class="taskListName">Open</span>
+                    <div class="search-tasks-count"></div>
+                    <select id="openListSort" title="Sort Open tasks"></select>
                 </div>
-            </div>
 
-            <div class="task-box">
-                <input type="checkbox" id="task4"> Make a homework
-                Make a homework Make a homework Make a homework Make a homework Make a homework
-                Make a homework Make a homework Make a homework Make a homework Make a homework
-                Make a homework Make a homework Make a homework Make a homework Make a homework
+                <div class="none empty-list" id="openListEmpty">No Open tasks yet</div>
 
-
-                <div class="time">07:53 PM</div>
-                <div class="thrash">
-                    <i class="fas fa-trash"></i>
+<!--                <div class="task-box">
+                    <input type="checkbox" id="task1" class="status">
+                    <div class="text">Make a homework</div>
+                    <span class="time">07:53 PM</span>
+                    <div class="thrash none">
+                        <i class="fas fa-trash"></i>
+                    </div>
                 </div>
-            </div>
 
-            <div class="clear-task-list">
-                <a href="">Clear "Open" list</a>
-            </div>
-
-            <div class="task-list-header">
-                <span class="taskListName">Done</span>
-                <select id="completeListSort">
-                    <option>Text (desc)</option>
-                </select>
-            </div>
-
-            <form>
                 <div class="task-box">
-                    <input type="checkbox" id="task3" checked="checked"> Make a homework
+                    <input type="checkbox" id="task2" class="status">
+                    <div class="text">Make a homework</div>
+                    <span class="time">07:53 PM</span>
+                    <div class="thrash none">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </div>
+
+                <div class="task-box" data-taskid="4">
+                    <input type="checkbox" id="task4" class="status">
+                    <div class="text-container">
+                        <span class="text">Make a homework
+                            Make a homework Make a homework Make a homework Make a homework Make a homework
+                            Make a homework Make a homework Make a homework Make a homework Make a homework
+                            Make a homework Make a homework Make a homework Make a homework Make a homework
+                        </span>
+                    </div>
+
+                    <div class="time">07:53 PM</div>
+                    <div class="thrash none">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </div>-->
+
+                <div class="clear-task-list">
+                    <a id="clearOpen" class="button">Clear "Open" list</a>
+                </div>
+            </div>
+
+            <!-- Done -->
+            <div id="taskListDone">
+
+                <div class="task-list-header">
+                    <span class="task-list-name">Done</span>
+                    <div class="search-tasks-count"></div>
+                    <select id="doneListSort" title="Sort Done tasks"></select>
+                </div>
+
+                <div class="none empty-list" id="doneListEmpty">No Done tasks yet</div>
+
+<!--                <div class="task-box">
+                    <input type="checkbox" id="task3" checked="checked" class="status">
+                    <div class="text">Make a homework</div>
                     <div class="time">
                         <div>09:00 AM</div>
                         <div class="complete-time">07:53 PM</div>
                     </div>
-                </div>
-            </form>
+                    <div class="thrash none">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </div>-->
 
-            <div class="clear-task-list">
-                <a href="">Clear "Done" list</a>
+                <div class="clear-task-list">
+                    <a id="clearDone" class="button">Clear "Done" list</a>
+                </div>
+
             </div>
 
         </div>
 
+        <template id="taskTemplate">
+            <div class="task-box" data-taskId="">
+                <input type="checkbox" class="status" />
+                <div class="text-container">
+                    <span class="text"></span>
+                </div>
+                <div class="time">
+                    <div></div>  <!-- creationDate -->
+                    <div class="complete-time none"></div>
+                </div>
+                <div class="thrash none">
+                    <i class="fas fa-trash"></i>
+                </div>
+            </div>
+        </template>
 </body>
 </html>
