@@ -1,5 +1,8 @@
 # Draft implementation
 
+- Actual dev code is in `develop` branch
+ 
+
 #### Installation
 
 In terminal
@@ -14,6 +17,7 @@ Open app [http://127.0.0.1:8080/app.html](http://127.0.0.1:8080/app.html)
 
 - Sorting doesn't work
 - Minor UI issues (visibility)
+- Tested in Google Chrome
 
 #### Env issues
 
